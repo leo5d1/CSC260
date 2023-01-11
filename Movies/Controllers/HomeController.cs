@@ -19,8 +19,9 @@ namespace Movies.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Privacy(string pizza)
         {
+            ViewBag.mypizza = pizza;
             return View();
         }
 
@@ -44,13 +45,15 @@ namespace Movies.Controllers
 		{
             ViewData["Title"] = "Input Form";
 			return View();
+            // return Redirect("https://stackoverflow.com");
+            // return Redirect("/Home/Privacy");
 		}
 
 		public IActionResult Output(string FirstName, string LastName)
 		{
             ViewBag.FN = FirstName;
             ViewBag.LN = LastName;
-			return View();
+			return View("Output");
 		}
 
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
