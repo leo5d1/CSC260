@@ -1,0 +1,17 @@
+﻿@{
+}
+
+<h1>@ViewData["Title"]</h1>
+<div class="row">
+	<div class="col-12">
+		<form asp-controller="Home" asp-action="Output" method="post">
+			<label for="FirstName">First Name: </label>
+			<input id="FirstName" type="text" name="FirstName" placeholder="First Name" />
+			<button type="submit" class="btn btn-outline-success">Submit</button>
+
+			<label for="LastName">Last Name: </label>
+			<input id="LastName" type="text" name="LastName" placeholder="Last Name" />
+			<button type="submit" class="btn btn-outline-success">Submit</button>
+		</form>
+	</div>
+</div>

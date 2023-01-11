@@ -1,0 +1,18 @@
+﻿@{
+
+}
+
+<div class="row">
+	<div class="col-4">
+		<h1>Count: @ViewBag.Count</h1>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-12">
+		<form asp-controller="Home" asp-action="Counter">
+			<label>Increases count: </label>
+			<button type="submit">Click Me</button>
+		</form>
+	</div>
+</div>

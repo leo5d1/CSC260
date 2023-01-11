@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Your Mad Libs";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    Today I went to the zoo. I saw a(n) 
+    
+    @if (!string.IsNullOrEmpty(ViewBag.AD))
+    {
+        <b>@ViewBag.AD</b>
+    }
+    else
+    {
+        <b>brown </b>
+    }
+    
+    @if (!string.IsNullOrEmpty(ViewBag.N1))
+    {
+        <b>@ViewBag.N1</b>
+    }
+    else
+    {
+        <b>monkey </b>
+    }
+
+    jumping up and down in its cage. They 
+    
+    @if (!string.IsNullOrEmpty(ViewBag.VB))
+    {
+        <b>@ViewBag.VB</b>
+    }
+    else
+    {
+        <b>climb </b>
+    }
+    
+    @if (!string.IsNullOrEmpty(ViewBag.AB))
+    {
+        <b>@ViewBag.AB</b>
+    }
+    else
+    {
+        <b>quickly </b>
+    }
+     
+    throught the large tunnel that led to their
+
+    @if (!string.IsNullOrEmpty(ViewBag.N2))
+    {
+        <b>@ViewBag.N2</b>
+    }
+    else
+    {
+        <b>banana </b>
+    }
+    
+    .
+</p>
+
+<form asp-controller="Home" asp-action="Index" method="post">
+			<button type="submit" class="btn btn-outline-success">Back</button>
+		</form>

@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Movies", "Movies\Movies.csproj", "{6E3F85F7-869F-4BEE-9BA5-808E26536BE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Movies", "Movies\Movies.csproj", "{6E3F85F7-869F-4BEE-9BA5-808E26536BE3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalWebsite", "PersonalWebsite\PersonalWebsite.csproj", "{D1042049-F38A-4070-BD38-B042EFD2282A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MadForInputs", "MadForInputs\MadForInputs.csproj", "{527F9B9E-5D64-47BF-B296-F2E657D097C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{6E3F85F7-869F-4BEE-9BA5-808E26536BE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E3F85F7-869F-4BEE-9BA5-808E26536BE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E3F85F7-869F-4BEE-9BA5-808E26536BE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1042049-F38A-4070-BD38-B042EFD2282A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1042049-F38A-4070-BD38-B042EFD2282A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1042049-F38A-4070-BD38-B042EFD2282A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1042049-F38A-4070-BD38-B042EFD2282A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{527F9B9E-5D64-47BF-B296-F2E657D097C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{527F9B9E-5D64-47BF-B296-F2E657D097C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{527F9B9E-5D64-47BF-B296-F2E657D097C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{527F9B9E-5D64-47BF-B296-F2E657D097C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+	<form asp-controller="Home" asp-action="MadLibs" method="post">
+		<label for="Adjective">Adjective: </label>
+		<input id="Adjective" type="text" name="Adjective" placeholder="adjective" />
+
+		<label for="Noun1">Noun: </label>
+		<input id="Noun1" type="text" name="Noun1" placeholder="noun" />
+
+		<label for="Verb">Verb, Past Tense: </label>
+		<input id="Verb" type="text" name="Verb" placeholder="verb" />
+
+		<label for="Adverb">Adverb: </label>
+		<input id="Adverb" type="text" name="Adverb" placeholder="adverb" />
+
+		<label for="Noun2">Noun: </label>
+		<input id="Noun2" type="text" name="Noun2" placeholder="noun" />
+
+		<button type="submit" class="btn btn-outline-success">Submit</button>
+		</form>
+
+	
+
+</div>
