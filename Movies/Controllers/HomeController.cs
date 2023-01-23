@@ -35,10 +35,23 @@ namespace Movies.Controllers
             return View();
         }
 
-        public IActionResult Counter()
+		public IActionResult RouteTest()
+		{
+			return Content("RouteTest stuff");
+			//return Content($"id= {id?.ToString() ?? "NULL"}");
+		}
+
+		public IActionResult Counter()
         {
             ViewBag.Count = intCount++;
             return View();
+        }
+        
+        public IActionResult ParamTest(int? id)
+        {
+            //return Content("stuff");
+            return Content($"id= {id?.ToString() ?? "NULL"}");
+
         }
 
 		public IActionResult Input()

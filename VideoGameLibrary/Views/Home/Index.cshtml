@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model Games
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <h2>Please fill out the form below to loan out a game.</h2>
+
+	<form asp-controller="Home" asp-action="Loan" method="post">
+		<div class="border p-3 mt-4">
+			<div class="row pb-2">
+				<h2 class="text-primary">Loan Game</h2>
+				<hr />
+			</div>
+			<div class="mb-3">
+				<label asp-for="Title"></label>
+				<input asp-for="Title" class="form-control" />
+			</div>
+			<div class="mb-3">
+				<label asp-for="LoanedTo"></label>
+				<input asp-for="LoanedTo" class="form-control" />
+			</div>
+			<div class="mb-3">
+				<label asp-for="LoanDate"></label>
+				<input asp-for="LoanDate" class="form-control" />
+			</div>
+			<button type="submit" class="btn btn-primary">Loan</button>
+			<a asp-controller="Home" asp-action="Library" class="btn btn-secondary">Library</a>
+		</div>
+	</form>
+
+	<form asp-controller="Home" asp-action="Return" method="post">
+		<div class="border p-3 mt-4">
+			<div class="row pb-2">
+				<h2 class="text-primary">Return Game</h2>
+				<hr />
+			</div>
+			<div class="mb-3">
+				<label asp-for="Title"></label>
+				<input asp-for="Title" class="form-control" />
+			</div>
+			<button type="submit" class="btn btn-primary">Return</button>
+		</div>
+	</form>
+
+</div>

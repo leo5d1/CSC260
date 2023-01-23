@@ -1,0 +1,13 @@
+﻿@model Movie
+
+<br />
+@if (Model == null)
+{
+	<h2>No Movie</h2>
+}
+else
+{
+	<h3>@Model.Title</h3>
+	<h3>@Model.Year</h3>
+	<h3>@Model.Rating</h3>
+}

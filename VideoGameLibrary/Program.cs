@@ -1,4 +1,4 @@
-namespace Movies
+namespace VideoGameLibrary
 {
     public class Program
     {
@@ -30,13 +30,7 @@ namespace Movies
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
-            app.MapControllerRoute(
-                name: "PizzaRouteTest",
-                pattern: "pizza",
-                defaults: new { controller = "Home", action = "RouteTest"}
-                );
-
-			app.Run();
+            app.Run();
         }
     }
 }

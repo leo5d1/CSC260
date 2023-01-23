@@ -1,0 +1,24 @@
+﻿@model Games
+
+<div>
+	<br />
+	<img src="~/images/@Model.Image" />
+	<br />
+	<label>Title: @Model.Title</label>
+	<br />
+	<label>Platform: @Model.Platform</label>
+	<br />
+	<label>Genre: @Model.Genre</label>
+	<br />
+	<label>ESRB: @Model.ESRB</label>
+	<br />
+	<label>Year: @Model.Year</label>
+
+	@if (@Model.LoanedTo != null)
+	{
+		<br />
+		<label>Loaned To: @Model.LoanedTo</label>
+		<br />
+		<label>Loaned Date: @Model.LoanDate</label>
+	}
+</div>

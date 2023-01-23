@@ -8,4 +8,19 @@
     <button class="btn btn-primary"><i class="bi bi-unity"></i></button>
 
     <a asp-controller="Home" asp-action="Privacy" asp-fragment="bob" asp-route-PIZZA="peperoni">Privacy</a>
+    <br />
+    <a asp-controller="Home" asp-action="ParamTest" >Param Test Simple</a>
+    <a asp-controller="Home" asp-action="ParamTest" asp-route-id="66">Param Route</a>
+
+    <a href="/Home/ParamTest?id=66">Query Param</a>
+
+    <form asp-controller="Home" asp-action="ParamTest" method="post">
+        Enter a number: <input name="id" />
+        <button type="submit">Submit</button>
+    </form>
+
+    <form action="/Home/ParamTest/2?id=3" method="post">
+        Enter a number: <input name="id" />
+        <button type="submit">Submit</button>
+    </form>
 </div>
