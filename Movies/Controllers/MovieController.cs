@@ -31,7 +31,50 @@ namespace Movies.Controllers
 			return View(MovieList);
 		}
 
-        [HttpGet] // loading Create page
+		[HttpGet] // loading Edit page
+		public IActionResult Edit(int? id)
+		{
+            if (id == null) return NotFound();
+
+			Movie foundMovie = MovieList.Where(m => m.Id == id).FirstOrDefault();
+
+			if (foundMovie == null) return NotFound();
+
+            return View(foundMovie);
+		}
+
+        [HttpPost]
+        public IActionResult Edit(Movie m)
+        {
+            int i;
+            i = MovieList.FindIndex(x => x.Id == m.Id);
+            MovieList[i] = m;
+            TempData["success"] = "Movie " + m.Title + " updated";
+			return RedirectToAction("MultMovies", "Movie");
+		}
+
+		[HttpGet] // loading Edit page
+		public IActionResult Delete(int? id)
+		{
+			if (id == null) return NotFound();
+
+			Movie foundMovie = MovieList.Where(m => m.Id == id).FirstOrDefault();
+
+			if (foundMovie == null) return NotFound();
+
+			return View(foundMovie);
+		}
+
+		[HttpPost]
+		public IActionResult Delete(Movie m)
+		{
+            int i = (int) m.Id;
+            MovieList.RemoveAt(i);
+			TempData["success"] = "Movie " + m.Title + " deleted";
+			return RedirectToAction("MultMovies", "Movie");
+		}
+
+		[HttpGet] // loading Create page
         public IActionResult Create()
         {
             return View();
