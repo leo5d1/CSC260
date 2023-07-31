@@ -1,23 +1,19 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using VideoGameLibrary.Data;
+using VideoGameLibrary.Interfaces;
 using VideoGameLibrary.Models;
 
 namespace VideoGameLibrary.Controllers
 {
     public class HomeController : Controller
     {
-		private static List<Games> GameList = new List<Games>
-		{
-			new Games("The Legend of Zelda: Twilight Princess", "GameCube, Wii, Wii U", "Action-Adventure", "T - Teens", 2006, "twilightprincess.jpg"),
-			new Games("Ultra Kill", "PC", "First-Person Shooter", "M - Mature", 2020, "ultrakill.jpg"),
-			new Games("Spelunky", "PC, Switch, Playstation, Xbox", "Rogue-Like", "Unavailable", 2008, "Spelunky.jpg"),
-			new Games("A Plague Tale: Requiem", "PC, Switch, Playstation, Xbox", "Action-Adventure", "M - Mature", 2022, "requiem.jpg"),
-			new Games("Stray", "PC, Playstation", "Adventure", "E - Everyone", 2022, "stray.jpg")
-		};
-
 		private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+		IDataAccessLayer dal = new GamesListDAL();
+
+		public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
@@ -29,8 +25,65 @@ namespace VideoGameLibrary.Controllers
 
         public IActionResult Library()
         {
-            return View(GameList);
+            return View(dal);
         }
+
+		[HttpGet] //Edit form loads
+		public IActionResult Edit(int? id)
+		{
+			Games foundGame = dal.SearchForGames(id);
+
+			if (foundGame == null)
+			{
+				TempData["Error"] = "Game not found";
+			}
+
+			return View(foundGame);
+		}
+
+		[HttpPost] //save
+		public IActionResult Edit(Games m)
+		{
+			dal.EditGame(m);
+			TempData["success"] = "Game '" + m.Title + "' updated";
+			return RedirectToAction("Library", "Home");
+		}
+
+		[HttpGet] //Create form loads
+		public IActionResult Create()
+		{
+			return View();
+		}
+
+		[HttpPost] //Create form saves
+		public IActionResult Create(Games m)
+		{
+			if (ModelState.IsValid)
+			{
+				dal.AddGame(m);
+				TempData["success"] = "Game added";
+				return RedirectToAction("Library", "Home");
+			}
+			else
+				return View();
+		}
+
+		public IActionResult Delete(int? id)
+		{
+			dal.RemoveGame(id);
+			return RedirectToAction("Library", "Home");
+
+		}
+
+		[HttpPost]
+		public IActionResult Search(string key)
+		{
+			if (string.IsNullOrEmpty(key))
+			{
+				return View("Library", dal.GetCollection());
+			}
+			return View("Library", dal.GetCollection().Where(x => x.Title.ToLower().Contains(key.ToLower())));
+		}
 
 		[HttpGet]
 		public IActionResult Loan()
@@ -43,7 +96,7 @@ namespace VideoGameLibrary.Controllers
 		{
             if(title != null)
             {
-				LoanedGame(GameList, title, loanedTo, loanDate);
+				LoanedGame(dal, title, loanedTo, loanDate);
 				TempData["success"] = "Game Loaned";
 				return RedirectToAction("Library");
 			}
@@ -61,7 +114,7 @@ namespace VideoGameLibrary.Controllers
 		{
 			if (title != null)
 			{
-				ReturnGame(GameList, title);
+				ReturnGame(dal, title);
 				TempData["success"] = "Game Returned";
 				return RedirectToAction("Library");
 			}
@@ -74,9 +127,9 @@ namespace VideoGameLibrary.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-		public void LoanedGame(List<Games> games, string title, string name, string date)
+		public void LoanedGame(IDataAccessLayer games, string title, string name, string date)
 		{
-			foreach (Games g in games)
+			foreach (Games g in games.GetCollection())
 			{
 				if (g.Title == title)
 				{
@@ -86,9 +139,9 @@ namespace VideoGameLibrary.Controllers
 			}
 		}
 
-		public void ReturnGame(List<Games> games, string title)
+		public void ReturnGame(IDataAccessLayer games, string title)
 		{
-			foreach (Games g in games)
+			foreach (Games g in games.GetCollection())
 			{
 				if (g.Title == title)
 				{

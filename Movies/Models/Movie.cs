@@ -1,15 +1,24 @@
-﻿namespace Movies.Models
+﻿using System.ComponentModel.DataAnnotations;
+using Movies.Validators;
+
+namespace Movies.Models
 {
+    [EightiesMovieRatings]
     public class Movie
     {
         private static int nextID = 0;
-        public int? Id { get; set; } = nextID++;
-        public string Title { get; set; } = "[NO TITLE]";
-        public int? Year { get; set; } = 1888;
-        public float? Rating { get; set; } = 0f;
+        public int? Id { get; set; }
+
+        [Required(ErrorMessage = "I didn't know someone could be so unbelievably fucking stupid, but then i met you and i've lost hope for humanity."), MaxLength(40)]
+        public string Title { get; set; }
+        [Required, Range(1888, 2023)]
+        public int? Year { get; set; }
+        [Required, Range(1, 5)]
+        public float? Rating { get; set; }
         public DateTime? ReleaseDate { get; set;}
-        public string Image { get; set; }
-        public string Genre { get; set; }
+        public string? Image { get; set; }
+        public string? Genre { get; set; }
+        public string? UserID { get; set; }
 
         public Movie()
         {

@@ -10,6 +10,11 @@
     <h1 class="display-4">@ViewData["Title"]</h1>
 </div>
 
+<form class="d-flex" asp-controller="Home" asp-action="Search" method="post">
+    <input name="key" class="form-control me-sm-2" type="search" placeholder="Search">
+    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+</form>
+
 @if (Model == null)
 {
 	<div class="text-center">

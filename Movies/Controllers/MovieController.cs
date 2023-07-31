@@ -53,24 +53,13 @@ namespace Movies.Controllers
 			return RedirectToAction("MultMovies", "Movie");
 		}
 
-		[HttpGet] // loading Edit page
 		public IActionResult Delete(int? id)
 		{
-			if (id == null) return NotFound();
-
-			Movie foundMovie = MovieList.Where(m => m.Id == id).FirstOrDefault();
-
-			if (foundMovie == null) return NotFound();
-
-			return View(foundMovie);
-		}
-
-		[HttpPost]
-		public IActionResult Delete(Movie m)
-		{
-            int i = (int) m.Id;
+            int i;
+            i = MovieList.FindIndex(x => x.Id == id);
+            if (i == -1) return NotFound();
+			TempData["success"] = "Movie '" + MovieList[i].Title + "' deleted";
             MovieList.RemoveAt(i);
-			TempData["success"] = "Movie " + m.Title + " deleted";
 			return RedirectToAction("MultMovies", "Movie");
 		}
 
@@ -83,7 +72,13 @@ namespace Movies.Controllers
         [HttpPost] // saving create page
         public IActionResult Create(Movie m)
         {
-            if (m != null)
+            // custom validation
+            if (m.Title == "The Room")
+            {
+                ModelState.AddModelError("CustomError", "That movie sucks");
+            }
+
+            if (ModelState.IsValid)
             {
                 MovieList.Add(m);
                 TempData["success"] = "Movie created";
